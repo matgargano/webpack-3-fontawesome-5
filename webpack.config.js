@@ -12,16 +12,7 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        test: /\.(woff|woff2|eot|ttf|svg)$/,
-        loader: 'url-loader',
-        options: {
-          limit: 10240,
-          name: '[name].[ext]?[hash]',
-          publicPath:    "./fonts/",
-          outputPath: "./fonts"
-        }
-      },
+      
       {
         test: /\.scss$/,
         use: ExtractTextPlugin.extract(
@@ -61,6 +52,17 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'fonts/',
+                publicPath: '../fonts'
+            }
+        }]
+    }
     ],
   },
 
